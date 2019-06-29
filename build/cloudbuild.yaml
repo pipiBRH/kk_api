@@ -7,7 +7,7 @@ steps:
         "-t",
         "asia.gcr.io/$PROJECT_ID/kk_api:latest",
         "-f",
-        "build/cloudbuild.yaml",
+        "docker/Dockerfile",
         ".",
       ]
     id: "build-api-gcr-production"
