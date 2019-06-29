@@ -7,7 +7,7 @@ import (
 
 	"github.com/pipiBRH/kk_api/config"
 	"github.com/pipiBRH/kk_api/dal"
-	"github.com/pipiBRH/kk_api/database"
+	database "github.com/pipiBRH/kk_database"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +15,14 @@ import (
 var defaultError = gin.H{
 	"code":  http.StatusBadRequest,
 	"error": "invalid parameter",
+}
+
+// For health check
+func HC(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, gin.H{
+		"code": http.StatusOK,
+		"data": "ok",
+	})
 }
 
 // SearchStationByText search by user input text

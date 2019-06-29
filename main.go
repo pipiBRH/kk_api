@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/pipiBRH/kk_database"
 	"log"
 	"os"
 
@@ -8,7 +9,6 @@ import (
 	"github.com/pipiBRH/kk_api/httpserver"
 
 	"github.com/pipiBRH/kk_api/config"
-	"github.com/pipiBRH/kk_api/database"
 )
 
 func main() {
@@ -24,16 +24,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// esDAL := dal.NewElasticsearchDAL(database.EsClient)
-	// err = esDAL.SearchMaxAndMinFreeSpaceYouBikeInfoByTimeRange(
-	// 	config.Config.Elasticsearch.Index["youbie"],
-	// 	"2019-06-29 12:00:00",
-	// 	"2019-06-29 23:00:00")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// fmt.Println(data)
 
 	httpserver.NewServer(config.Config.App.Host, config.Config.App.Port, gin.Default()).InitServer()
 }

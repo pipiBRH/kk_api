@@ -5,7 +5,7 @@ import (
 	"math"
 
 	"github.com/olivere/elastic"
-	"github.com/pipiBRH/kk_api/database"
+	database "github.com/pipiBRH/kk_database"
 )
 
 type ElasticsearchDAL struct {
