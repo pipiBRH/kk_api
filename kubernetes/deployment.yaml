@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: asia.gcr.io/brave-smile-234203/kk_api:latest
+          # command: ["sleep", "600"]
+          # imagePullPolicy: Always
+          ports:
+            - name: api-port
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi
+            limits:
+              cpu: 300M
+              memory: 1000Mi
+          livenessProbe:
+            httpGet:
+              path: /hc
+              port: api-port
+            initialDelaySeconds: 15
+            timeoutSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /hc
+              port: api-port
+            initialDelaySeconds: 15
+            timeoutSeconds: 30
+          volumeMounts:
+            - name: config
+              mountPath: /work/config.yaml
+              subPath: config.yaml
+          envFrom:
+            - configMapRef:
+                name: env
+      nodeSelector:
+        utility-api: "api"
+      volumes:
+        - name: config
+          secret:
+            secretName: config
