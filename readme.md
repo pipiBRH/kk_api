@@ -11,7 +11,7 @@ export CONFIG_PATH=/path/to/your/config.yaml
 ```
 
 ### Config example
-<https://github.com/pipiBRH/kk_spider/blob/master/config/example.yaml>
+<https://github.com/pipiBRH/kk_api/blob/master/config/example.yaml>
 
 ### Demo site
 <https://hoyoyo.xyz>
