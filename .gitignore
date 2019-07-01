@@ -1,0 +1,4 @@
+.env
+secret.yaml
+ingress*
+configmap.yaml

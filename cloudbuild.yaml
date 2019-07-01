@@ -1,0 +1,15 @@
+timeout: 1800s
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "asia.gcr.io/$PROJECT_ID/kk_api_test:latest",
+        "-f",
+        "docker/test.Dockerfile",
+        ".",
+      ]
+    id: "build-api-test"
+tags:
+  - "api-test"
